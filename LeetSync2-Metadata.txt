@@ -1,3 +1,4 @@
 1249-minimum-remove-to-make-valid-parentheses|Medium|1731312000000
 408-valid-word-abbreviation|Easy|1731312000000
 680-valid-palindrome-ii|Easy|1731312000000
+938-range-sum-of-bst|Easy|1731312000000
