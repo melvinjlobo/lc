@@ -5,3 +5,4 @@
 314-binary-tree-vertical-order-traversal|Medium|1731312000000
 973-k-closest-points-to-origin|Medium|1731312000000
 791-custom-sort-string|Medium|1731312000000
+162-find-peak-element|Medium|1731312000000
