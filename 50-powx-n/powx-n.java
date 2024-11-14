@@ -28,45 +28,28 @@ class Solution {
     }
 
     // Binary exponentiation...Same concept as above
-    public double pow1(double x, int n) {
+    public double pow1(double x, int pow) {
+        long n = pow;
         //Normalize Negative Case
-        // if(n < 0) {
-        //     x = 1/x;
-        //     n= -n;
-        // }
-
-        // double result = 1.0;
-
-        // while(n > 0) {
-        //     if((n & 1) == 1) {      // Is n Odd (For odd numbers, the last bit is always 1)
-        //         result *= x;
-        //     }
-
-        //     x *= x;             //Multiply by itself for each bit shift
-            
-        //     n >>= 1;            //Shift the bit (equivalen to divide n by 2)
-        // }
-
-        // return result;
-
-        if(n < 0){
-            n = -n;
-            x = 1 / x;
+        if(n < 0) {
+            x = 1/x;
+            n= -n;
+            System.out.println("n is: " + n);
         }
-        
-        double pow = 1.0;
-        
-        while(n != 0){
-            if((n & 1) != 0){
-                pow *= x;
-            } 
-                
-            x *= x;
-            n >>>= 1;
+
+        double result = 1.0;
+
+        while(n > 0) {
+            if((n & 1) == 1) {      // Is n Odd? (For odd numbers, the last bit is always 1)
+                result *= x;
+            }
+
+            x *= x;             //Multiply by itself for each bit shift
             
+            n >>= 1;            //Shift the bit (equivalen to divide n by 2)
         }
-        
-        return pow;
+
+        return result;
     }
 
 }
