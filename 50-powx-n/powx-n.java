@@ -11,7 +11,7 @@ class Solution {
         return pow(x, n);
     }
 
-    // Exponenetiantion by squaring
+    // Exponentiation by squaring
     public double pow(double x, int n) {
 
         //Base Case
