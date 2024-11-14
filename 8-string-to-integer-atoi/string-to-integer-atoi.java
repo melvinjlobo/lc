@@ -38,14 +38,14 @@ class Solution {
         Suppose INT_MAX = 2147483647 and digit = 7 (the next digit we want to add):
 
         We want to ensure result * 10 + digit won’t exceed 2147483647.
-        By checking result <= (INT_MAX - digit) / 10, we avoid overflow before it happens.
+        By checking result > (INT_MAX - digit) / 10, we avoid overflow before it happens.
         When Overflow Would Happen?
         If result exceeds (INT_MAX - digit) / 10, then multiplying result by 10 and adding digit would indeed exceed INT_MAX.
 
         For example:
 
         Let’s say result = 214748364 and digit = 8.
-        Checking: 214748364 <= (2147483647 - 8) / 10, which is 214748364 <= 214748364, would result in true.
+        Checking: 214748364 > (2147483647 - 8) / 10, which is 214748364 > 214748364, would result in true.
         So the condition triggers, and we know adding this digit would cause overflow, so we return INT_MAX (or INT_MIN if the sign is negative).
 
              */
