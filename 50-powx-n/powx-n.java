@@ -54,7 +54,7 @@ class Solution {
             x = 1 / x;
         }
         
-        double pow = 1;
+        double pow = 1.0;
         
         while(n != 0){
             if((n & 1) != 0){
