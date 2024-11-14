@@ -1,14 +1,14 @@
 class Solution {
     public double myPow(double x, int n) {
 
-        return pow1(x, n);
+        //return pow1(x, n);
         //Normalize Negative Case
-        // if(n < 0) {
-        //     x = 1/x;
-        //     n= -n;
-        // }
+        if(n < 0) {
+            x = 1/x;
+            n= -n;
+        }
         
-        // return pow(x, n);
+        return pow(x, n);
     }
 
     // Exponenetiantion by squaring
