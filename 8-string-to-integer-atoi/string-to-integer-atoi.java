@@ -49,12 +49,6 @@ class Solution {
         So the condition triggers, and we know adding this digit would cause overflow, so we return INT_MAX (or INT_MIN if the sign is negative).
 
              */
-            // if (result > INT_MAX / 10 || 
-            //     ( (result == INT_MAX / 10) && (digit > INT_MAX % 10))) {
-            //     result = (sign == 1) ? INT_MAX : INT_MIN;
-            //     break;
-            // } 
-
              if (result > (INT_MAX - digit) / 10) {
                 return sign == 1 ? INT_MAX : INT_MIN;
             }
