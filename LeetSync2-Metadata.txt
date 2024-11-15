@@ -12,3 +12,4 @@
 50-powx-n|Medium|1731571200000
 125-valid-palindrome|Easy|1731571200000
 129-sum-root-to-leaf-numbers|Medium|1731571200000
+31-next-permutation|Medium|1731571200000
