@@ -36,11 +36,28 @@ If prev is null, set head to the current node (this happens only for the first n
 Otherwise, link prev to the current node and the current node back to prev.
 Update prev to the current node.
 After traversal is complete, link head and prev to close the circular doubly-linked list.
+
+Example BST:
+
+      4
+     / \
+    2   5
+   / \
+  1   3
+
+
+It should look like:
+
+1 <-> 2 <-> 3 <-> 4 <-> 5
+^                       ^
+|                       |
++-----------------------+
  */
  
 class Solution {
     Node prev = null;
     Node head = null;
+    
 
     public Node treeToDoublyList(Node root) {
         if (root == null)
