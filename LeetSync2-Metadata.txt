@@ -10,3 +10,4 @@
 426-convert-binary-search-tree-to-sorted-doubly-linked-list|Medium|1731312000000
 8-string-to-integer-atoi|Medium|1731571200000
 50-powx-n|Medium|1731571200000
+125-valid-palindrome|Easy|1731571200000
