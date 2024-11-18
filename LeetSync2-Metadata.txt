@@ -15,3 +15,4 @@
 31-next-permutation|Medium|1731571200000
 146-lru-cache|Medium|1731744000000
 1004-max-consecutive-ones-iii|Medium|1731744000000
+543-diameter-of-binary-tree|Easy|1731830400000
