@@ -112,10 +112,47 @@ class Solution {
 
         // Unweave the linked list to get back the original linked list and the cloned list.
         // i.e. A->A'->B->B'->C->C' would be broken to A->B->C and A'->B'->C'
-        while(oldList != null) {
-            oldList.next = (oldList.next != null) ? oldList.next.next : null; 
-            newList.next = (newList.next != null) ? newList.next.next : null;
+        /**
+        IMP NOTE: Here the order of the lists matter...Modify the older list first before the newer list. That is the order
+        should be as in the code below and not:
+        newList.next = (newList.next != null) ? newList.next.next : null;
+        oldList.next = (oldList.next != null) ? oldList.next.next : null;
 
+        Why the above order does not work:
+        The interleaved list looks like:
+        A -> A' -> B -> B' -> C -> C' -> D -> D' -> E -> E'
+
+        Now, oldList points to A and newList points to A'
+        When you do : newList.next = (newList.next != null) ? newList.next.next : null;, the list changes to:
+
+            newList
+    oldList  |
+        |    |
+        v    v
+        A -> A'    B -> B' -> C -> C' -> D -> D' -> E -> E'
+             |          ^
+             |__________|
+
+
+        Now when you do oldList.next = (oldList.next != null) ? oldList.next.next : null;, it changes to:
+    
+          newList
+    oldList  |
+        |    |
+        v    v
+        A    A'    B -> B' -> C -> C' -> D -> D' -> E -> E'
+        |    |          ^
+        |    |__________|
+        |_______________|
+
+        So now, both oldList and newList next point to the same new Node. That is why we end up in the error "Original list has been modified". If you update old list first, the assignment works correctly. So, always do the old list first
+
+         */
+        while(oldList != null) {
+            oldList.next = (oldList.next != null) ? oldList.next.next : null;
+            newList.next = (newList.next != null) ? newList.next.next : null;
+        
+        
             newList = newList.next;
             oldList = oldList.next;
         }
