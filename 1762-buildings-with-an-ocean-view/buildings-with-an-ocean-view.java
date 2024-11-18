@@ -25,6 +25,7 @@ class Solution {
         // The stack has all the bldgs that have ocen view, but in reverse order
         //pop them and fill them in an array
         int[] result = new int[stack.size()];
+        
         for(int i = stack.size() - 1; i >=0; i--) {
             result[i] = stack.pop();
         }
