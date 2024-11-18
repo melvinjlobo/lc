@@ -18,10 +18,7 @@ class Solution {
         // IMP NOTE: the loop runs till `= nums.length`, since we have to consider the range beyond nums as well
         for(int i = 0; i <= nums.length; i++) {
             curr = (i < nums.length) ? nums[i]: upper + 1;  //upper + 1 since upper is inclusive
-
-            System.out.println("prev - " + prev + ", curr - " + curr);
             if((curr - prev) > 1) {
-                System.out.println("Addin list for prev - " + (prev + 1) + ", curr - " + (curr - 1));
                 result.add(Arrays.asList(prev + 1, curr - 1));
             }
 
