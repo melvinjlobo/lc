@@ -68,12 +68,70 @@ Approach 2: Re-use the existing list. interleave new Nodes int he existing list 
 class Solution {
 
     Map<Node, Node> visited = new HashMap<>();
+
+    /**
+    Approach 1
+     */
+    
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        
+        //Step 1: Create a duplicate node for every node in the list beside it and interleave
+        Node curr = head;
+
+        while(curr != null) {
+            Node newNode = new Node(curr.val, null, null);
+
+            // Inserting the cloned node just next to the original node.
+            // If A->B->C is the original linked list,
+            // Linked list after weaving cloned nodes would be A->A'->B->B'->C->C'
+            newNode.next = curr.next;
+            curr.next = newNode;
+            curr = newNode.next;
+        }
+
+        // Step 2. Assign Randoms
+         curr = head;
+         
+        // Now link the random pointers of the new nodes created.
+        // Iterate the newly created list and use the original nodes' random pointers,
+        // to assign references to random pointers for cloned nodes.
+        while(curr != null) {
+            if(curr.random != null)
+                curr.next.random = curr.random.next;
+            if(curr.next != null)
+                curr = curr.next.next; 
+        }
+
+         //Step 3: Detach the new nodes and remove interleaving
+        Node oldList = head;
+        Node newHead = head.next;
+        Node newList = head.next;
+
+        // Unweave the linked list to get back the original linked list and the cloned list.
+        // i.e. A->A'->B->B'->C->C' would be broken to A->B->C and A'->B'->C'
+        while(oldList != null) {
+            oldList.next = (oldList.next != null) ? oldList.next.next : null; 
+            newList.next = (newList.next != null) ? newList.next.next : null;
+
+            newList = newList.next;
+            oldList = oldList.next;
+        }
+
+        return newHead;
+    }
+
+
+
+    ///////////////////////////////////////
        
     /**
     Approach 1:
         */
     
-    public Node getClonedNode(Node node) {
+    public Node getClonedNode1(Node node) {
         // If the node exists then
         if(node == null)
             return node;
@@ -91,7 +149,7 @@ class Solution {
         
     }
 
-    public Node copyRandomList(Node head) {
+    public Node copyRandomList1(Node head) {
         if(head == null)
             return null;
         Node curr = head;
@@ -101,8 +159,8 @@ class Solution {
         this.visited.put(curr, newNode);
 
         while(curr != null) {
-            newNode.random = getClonedNode(curr.random);
-            newNode.next = getClonedNode(curr.next);
+            newNode.random = getClonedNode1(curr.random);
+            newNode.next = getClonedNode1(curr.next);
 
             curr = curr.next;
             newNode = newNode.next;
@@ -111,44 +169,6 @@ class Solution {
 
         return this.visited.get(head);
     }
-
-        /**
-        if (head == null) {
-                return null;
-            }
-
-            Node oldNode = head;
-
-            // Creating the new head node.
-            Node newNode = new Node(oldNode.val);
-            this.visited.put(oldNode, newNode);
-
-            // Iterate on the linked list until all nodes are cloned.
-            while (oldNode != null) {
-                // Get the clones of the nodes referenced by random and next pointers.
-                newNode.random = this.getClonedNode1(oldNode.random);
-                newNode.next = this.getClonedNode1(oldNode.next);
-
-                // Move one step ahead in the linked list.
-                oldNode = oldNode.next; 
-                newNode = newNode.next;
-            }
-            return this.visited.get(head); */
-
-            /**
-            if (node != null) {
-                // Check if the node is in the visited dictionary
-                if (this.visited.containsKey(node)) {
-                    // If its in the visited dictionary then return the new node reference from the dictionary
-                    return this.visited.get(node);
-                } else {
-                    // Otherwise create a new node, add to the dictionary and return it
-                    this.visited.put(node, new Node(node.val, null, null));
-                    return this.visited.get(node);
-                }
-            }
-            return null;
-             */
         
     
 }
