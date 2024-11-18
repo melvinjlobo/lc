@@ -17,3 +17,4 @@
 1004-max-consecutive-ones-iii|Medium|1731744000000
 543-diameter-of-binary-tree|Easy|1731830400000
 1762-buildings-with-an-ocean-view|Medium|1731830400000
+921-minimum-add-to-make-parentheses-valid|Medium|1731830400000
