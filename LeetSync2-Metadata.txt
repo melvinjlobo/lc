@@ -20,3 +20,4 @@
 921-minimum-add-to-make-parentheses-valid|Medium|1731830400000
 138-copy-list-with-random-pointer|Medium|1731916800000
 163-missing-ranges|Easy|1731916800000
+346-moving-average-from-data-stream|Easy|1731916800000
