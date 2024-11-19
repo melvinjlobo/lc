@@ -149,23 +149,25 @@ class Solution {
         for(Map.Entry<Integer, Integer> entry: freqMap.entrySet()) {
             int num = entry.getKey();
             int freq = entry.getValue();
-            // System.out.println("num = " + num + ", freq = " + freq);
-            // if(bucketList[freq] == null)
-            //     bucketList[freq] = new ArrayList<Integer>();
             bucketList[freq].add(num);
         }
 
         //3. Get the topK elements from the bucket list in the reverse order
-        List<Integer> result = new ArrayList<>();
-        for(int i = bucketList.length - 1; i >=0 && result.size() < k; i--) {
+        int[] result = new int[k];
+        int pos = 0;
+        for(int i = bucketList.length - 1; i >=0; i--) {
             //Note: Since the bucket is sparse (all values may not be filled as only certain numbers are present)
             // we have to check if the associated arrayList with an index is empty and only pick those as 
             //candidates for the result
-            if(!bucketList[i].isEmpty())
-                result.addAll(bucketList[i]);
+            if(!bucketList[i].isEmpty()) {
+                for (int j = 0; j < bucketList[i].size() && pos < k; j++) {
+                    result[pos] = bucketList[i].get(j);
+                    pos++;
+                }
+            }
         }
 
-        return result.stream().mapToInt(i -> i).toArray();
+        return result;
 
      }
     
