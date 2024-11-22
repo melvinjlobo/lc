@@ -22,3 +22,4 @@
 163-missing-ranges|Easy|1731916800000
 346-moving-average-from-data-stream|Easy|1731916800000
 347-top-k-frequent-elements|Medium|1731916800000
+560-subarray-sum-equals-k|Medium|1732262400000
