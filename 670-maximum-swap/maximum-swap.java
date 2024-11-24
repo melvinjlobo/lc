@@ -36,7 +36,7 @@ class Solution {
             //digit
             for(int j = 9; j > digit; j--) {
                 // Check if this larger digit
-                if(index[j] > i) {
+                if(index[j] > i) {      //NOTE: tricky statement. Try to understand why we do this...
                     char temp = numChar[i];
                     numChar[i] = numChar[index[j]]; //index[j] has the index of the digit `j` in the original char array numChar
                     numChar[index[j]] = temp;
