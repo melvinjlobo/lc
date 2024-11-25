@@ -35,6 +35,50 @@ And finally,
 2^1=2 * (2^0 * 2^0)
 where 2^0 = 1;
 Using this approach, we efficiently compute the power with fewer multiplications.
+
+---------------------------------------------------
+
+Binary Exponentiation:
+
+If n is even:
+x ^ n = x ^ n/2 * x ^ n/2
+If n is odd:
+x^n = x* x ^ n-1 = x * x ^ n/2 * x ^ n/2
+y breaking down n in binary form, we can either square the base or multiply by the base selectively based on whether each binary bit in n is 1.
+In binary exponentiation:
+
+We square the base for each binary shift to the left (equivalent to doubling the power).
+If the current bit is 1, we multiply the result by the base (equivalent to including that power in our calculation).
+
+Example
+For x=2.0 and n=10, we break down 10 in binary: 
+1010.
+Start with result = 1.
+For each bit from right to left:
+Square x each time (shifting the exponent).
+If the bit is 1, multiply result by the current value of x.
+
+Example Walkthrough
+For x = 2.0 and n = 10 (binary 1010):
+
+Initial Values: result = 1.0, x = 2.0, power = 10.
+Step 1:
+power & 1 == 0 (last bit is 0), so don’t multiply result.
+Square x: x = 4.0.
+Right-shift power: power = 5.
+Step 2:
+power & 1 == 1 (last bit is 1), so multiply result *= x: result = 4.0.
+Square x: x = 16.0.
+Right-shift power: power = 2.
+Step 3:
+power & 1 == 0, don’t multiply result.
+Square x: x = 256.0.
+Right-shift power: power = 1.
+Step 4:
+power & 1 == 1, so multiply result *= x: result = 1024.0.
+Square x: x = 65536.0.
+Right-shift power: power = 0 (end of loop).
+Final result is 1024.0, which is 2 ^ 10
  */
 
 
