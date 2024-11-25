@@ -26,3 +26,4 @@
 1539-kth-missing-positive-number|Easy|1732348800000
 133-clone-graph|Medium|1732435200000
 670-maximum-swap|Medium|1732435200000
+227-basic-calculator-ii|Medium|1732435200000
