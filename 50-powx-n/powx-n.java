@@ -1,3 +1,43 @@
+/**
+
+Instead of simply multiplying x by itself n times (which would be inefficient for large values of n), 
+we can use a method called Exponentiation by Squaring. This method allows us to calculate the power in logarithmic time 
+O(logn) instead of O(n).
+
+Key Observations
+When n is 0: 
+x^0 =1 for any x except when x is 0.
+When n is negative: 
+n =1/x 
+n = −n
+When n is positive:
+If n is even, we can break it down as 
+x^n =(x ^ n/2)×(x * n/2).
+If n is odd, we can break it down as 
+ x^n =x×(x ^ n−1).
+By using these properties, we can reduce the number of multiplications needed.
+
+Example Walkthrough
+Suppose we want to calculate 
+2^10
+
+Since 10 is even, we can rewrite 
+2^10 = (2^5) * (2^5)
+Now, to calculate 
+ 2^5, since 5 is odd, we use 
+ 2^5 = 2 *  2^4
+Then, for 
+2^4 = 2^2 * 2^2
+, since 4 is even, we use 
+For 
+2^2 = 2^1  * 2^1
+And finally, 
+2^1=2 * (2^0 * 2^0)
+where 2^0 = 1;
+Using this approach, we efficiently compute the power with fewer multiplications.
+ */
+
+
 class Solution {
     public double myPow(double x, int n) {
 
@@ -12,7 +52,7 @@ class Solution {
     }
 
     // Exponentiation by squaring
-    public double pow(double x, int n) {
+    public double pow(double x, long n) {
 
         //Base Case
         if(n == 0)
