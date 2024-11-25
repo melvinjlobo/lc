@@ -108,35 +108,15 @@ Answer: The 5th missing number is 9.
 
 Let’s use binary search to solve the problem programmatically.
 
-Initialize Pointers:
-low = 0 (start of the array).
-high = arr.length = 5 (end of the array).
-Binary Search Steps:
-Step 1:
-Calculate mid = (low + high) / 2 = (0 + 5) / 2 = 2.
-At mid = 2, arr[mid] = 4.
-Calculate missing = arr[mid] - (mid + 1) = 4 - 3 = 1.
-Since missing < k (5), search in the right half (low = mid + 1 = 3).
-
-Step 2:
-Calculate mid = (low + high) / 2 = (3 + 5) / 2 = 4.
-At mid = 4, arr[mid] = 11.
-Calculate missing = arr[mid] - (mid + 1) = 11 - 5 = 6.
-Since missing >= k (5), search in the left half (high = mid = 4).
-
-Step 3:
-Calculate mid = (low + high) / 2 = (3 + 4) / 2 = 3.
-At mid = 3, arr[mid] = 7.
-Calculate missing = arr[mid] - (mid + 1) = 7 - 4 = 3.
-Since missing < k (5), search in the right half (low = mid + 1 = 4).
-
-Final Step:
-At the end, low = 4 and high = 4. The kth missing number is:
-low+k=4+5=9
+With binary search, we don't have the actual answer space (9 is not present in the array), so we try to get the boundaries between which the missing number Will be present. We know that if the sequence did not have missing numbers, an array index i would have the number i+1. For example, in an array of natural numbers from 1 to 10, arr[6] = 7 (since the array has a zero index). Similarly, arr[3] = 4 or arr[5] = 6 and so on. With this knowledge we can derive a formula at a specific index that missing number at index i is: missing[i] = arr[i] - (i + 1). Taking the array: [2, 3, 4, 7, 11], at index 4, the missing number is arr[2] - (2 + 1) -> 4 - 3 -> 1. There is one missing number at index 2. This is true because, even without a formula, we can see that at index 2, we have a 4 instead of a 3. If 1 was not missing, the array should have been [1, 2, 3, ...]. Now that we have the missing number formula, we can use it at every mid calculation to check how many numbers are missing at the `mid` index. Then if the number of missing numbers are < k, we do  `low = mid + 1`, else `high = mid - 1` At the end of the loop, `high > low`. So `high` points to the lower boundary of the value in the array where the missing number will be and `low` points to  the higher boundary. From there the problem becomes to find the actual number. For example, in the above array : [2, 3, 4, 7, 11], we will get high = 3 (arr[3] = 7) and  low = 4 (arr[4] = 11). We know that at low, the missing numbers are: arr[3] - (3 + 1) -> 7 - 4 = 3 and the missing numbers at 4 are: arr[4] - (4 + 1) -> 11 - 5 = 6 so at `7`, we have 3 missing numbers and at `11`, we have 6. So 5th missing number has to be between 7 and 11. Since we know that 3 numbers are missing at `7`,  then we just need more = 5 - 3 = 2 more numbers or k - 3 numbers. This would mean that we add `2` to `7` and get the missing number `9`. Let's deduce it. Missing number at high is:
+missing_number = nums[high] + k - (more_missing_numbers)
+missing_number = nums[high] + k - (nums[high] - (high + 1)) -> where nums[high] - (high + 1) are the missing numbers at high
+missing_number = nums[high] + k - nums[high] + (high + 1) -> opening brackets and changing signs
+missing_number = k + (high + 1) -> high + 1 + k -> nums[high] gets cancelled
+Now, high + 1 after binary search is also low (remember, high just crossed low to the left, so high + 1 would be low)
+Therefore missing_number = low + k -> replacing `high + 1` with `low`
 
 Answer: The 5th missing number is 9.
-
-
  */
 
 
@@ -155,16 +135,16 @@ class Solution {
 
 
     public int findKthPositive(int[] arr, int k) {
-         int low = 0, high = arr.length;
+        int low = 0, high = arr.length - 1;
 
-        while (low < high) {
+        while (low <= high) {
             int mid = low + (high - low) / 2;
             int missing = arr[mid] - (mid + 1);
 
             if (missing < k) {
                 low = mid + 1;
             } else {
-                high = mid;
+                high = mid - 1;
             }
         }
 
