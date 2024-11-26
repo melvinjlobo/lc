@@ -28,3 +28,4 @@
 670-maximum-swap|Medium|1732435200000
 227-basic-calculator-ii|Medium|1732435200000
 224-basic-calculator|Hard|1732435200000
+528-random-pick-with-weight|Medium|1732521600000
