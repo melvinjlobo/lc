@@ -35,3 +35,4 @@
 236-lowest-common-ancestor-of-a-binary-tree|Medium|1732780800000
 339-nested-list-weight-sum|Medium|1732780800000
 71-simplify-path|Medium|1732780800000
+1570-dot-product-of-two-sparse-vectors|Medium|1732780800000
