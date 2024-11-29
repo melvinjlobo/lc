@@ -37,3 +37,4 @@
 71-simplify-path|Medium|1732780800000
 1570-dot-product-of-two-sparse-vectors|Medium|1732780800000
 1-two-sum|Easy|1732780800000
+56-merge-intervals|Medium|1732780800000
