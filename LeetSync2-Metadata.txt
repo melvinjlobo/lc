@@ -32,3 +32,4 @@
 215-kth-largest-element-in-an-array|Medium|1732780800000
 1650-lowest-common-ancestor-of-a-binary-tree-iii|Medium|1732780800000
 88-merge-sorted-array|Easy|1732780800000
+236-lowest-common-ancestor-of-a-binary-tree|Medium|1732780800000
