@@ -39,3 +39,4 @@
 1-two-sum|Easy|1732780800000
 56-merge-intervals|Medium|1732780800000
 1091-shortest-path-in-binary-matrix|Medium|1732780800000
+986-interval-list-intersections|Medium|1732780800000
