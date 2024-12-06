@@ -23,25 +23,25 @@ class Solution {
 
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode dummy = new ListNode(-1);
+        ListNode pointer = dummy;
 
+        //Edge case
         if(lists.length == 0)
             return null;
 
-        ListNode resultHead = dummy;
-
         PriorityQueue<ListNode> minHeap = new PriorityQueue<>((l1, l2) -> l1.val - l2.val);
 
-        for(int i = 0; i < lists.length; i++) {
-            if(lists[i] != null)
-                minHeap.offer(lists[i]);
+        // Add all the heads
+        for(ListNode node: lists) {
+            if(node != null)
+                minHeap.offer(node);
         }
 
+        //Pick the min value node, point the result pointer to it and put it's next into the Queue
         while(!minHeap.isEmpty()) {
             ListNode node = minHeap.poll();
-            // if(resultHead != null)
-            resultHead.next = node;
-            
-            resultHead = node;
+            pointer.next = node;
+            pointer = node;
             
             if(node.next != null)
                 minHeap.offer(node.next);    
