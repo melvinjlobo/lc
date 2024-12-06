@@ -40,3 +40,4 @@
 56-merge-intervals|Medium|1732780800000
 1091-shortest-path-in-binary-matrix|Medium|1732780800000
 986-interval-list-intersections|Medium|1732780800000
+766-toeplitz-matrix|Easy|1733472000000
