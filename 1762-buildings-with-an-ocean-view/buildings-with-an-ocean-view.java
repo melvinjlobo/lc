@@ -10,6 +10,7 @@ At the end the stack will contain an ascending list of the buildings that have a
 class Solution {
     public int[] findBuildings(int[] heights) {
         Stack<Integer> stack = new Stack<>();
+       
         int start = 0;
         while(start < heights.length) {
             int currBldgHeight = heights[start];
@@ -29,7 +30,6 @@ class Solution {
         for(int i = stack.size() - 1; i >=0; i--) {
             result[i] = stack.pop();
         }
-
 
         return result;
     }
