@@ -38,8 +38,8 @@ class Solution {
 
         while(!minHeap.isEmpty()) {
             ListNode node = minHeap.poll();
-            if(resultHead != null)
-                resultHead.next = node;
+            // if(resultHead != null)
+            resultHead.next = node;
             
             resultHead = node;
             
