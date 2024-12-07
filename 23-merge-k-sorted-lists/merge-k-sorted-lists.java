@@ -101,6 +101,7 @@ class Solution {
             return null;
 
         PriorityQueue<ListNode> minHeap = new PriorityQueue<>((l1, l2) -> l1.val - l2.val);
+        
 
         // Add all the heads
         for(ListNode node: lists) {
