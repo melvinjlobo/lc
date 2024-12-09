@@ -42,3 +42,4 @@
 986-interval-list-intersections|Medium|1732780800000
 766-toeplitz-matrix|Easy|1733472000000
 23-merge-k-sorted-lists|Hard|1733472000000
+863-all-nodes-distance-k-in-binary-tree|Medium|1733731200000
