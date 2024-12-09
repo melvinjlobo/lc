@@ -10,12 +10,12 @@ class Solution {
             freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
         }
 
-        System.out.println("Map - " + freqMap.toString());
+        //System.out.println("Map - " + freqMap.toString());
 
 
         int windowStart = 0;
         for(int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
-            System.out.println("windowEnd - " + windowEnd);
+           // System.out.println("windowEnd - " + windowEnd);
 
             Character c = s.charAt(windowEnd);
 
@@ -35,7 +35,7 @@ class Solution {
                 // Match iff the freq >= 0 since we don't want to match redundant ones
                 if(updatedFreq >= 0) {
                     matched++;
-                    System.out.println("matched - " + matched);
+                   // System.out.println("matched - " + matched);
                 }
             }
 
@@ -52,12 +52,12 @@ class Solution {
 
                 Character ws = s.charAt(windowStart);
                 windowStart++;
-                System.out.println("Window Start is - " + windowStart);
+               // System.out.println("Window Start is - " + windowStart);
 
                 if(freqMap.containsKey(ws)) {
                     if (freqMap.get(ws) >= 0) {
                         matched--;
-                        System.out.println("matched reduced - " + matched);
+                        //System.out.println("matched reduced - " + matched);
                     }
                     
                     freqMap.put(ws, freqMap.get(ws) + 1);
