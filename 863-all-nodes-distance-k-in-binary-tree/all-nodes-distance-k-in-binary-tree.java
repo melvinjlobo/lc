@@ -37,8 +37,10 @@ class Solution {
 
     }
 
-
-    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+    /**
+        BFS
+     */
+    public List<Integer> distanceKBFS(TreeNode root, TreeNode target, int k) {
         //Graph
         Map<TreeNode, List<TreeNode>> graph = new HashMap<>();
 
@@ -89,5 +91,43 @@ class Solution {
 
         return result;
 
+    }
+
+    /**
+        DFS
+     */
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+
+        //Graph
+        Map<TreeNode, List<TreeNode>> graph = new HashMap<>();
+        List<Integer> result = new ArrayList<>();
+        Set<TreeNode> visited = new HashSet<>();
+
+        //Step 1. Build grpah
+        buildGraph(root, null, graph);
+
+        // Step 2. DFS
+        visited.add(target);
+        dfs(target, 0, k, result, visited, graph);
+
+        return result;
+    }
+
+    public void dfs(TreeNode curr, int distance, int k, List<Integer> result, Set<TreeNode> visited, Map<TreeNode, List<TreeNode>> graph) {
+        // Base case
+        if(curr == null)
+            return;
+        
+        if(distance == k) {
+            result.add(curr.val);
+            return;
+        }
+
+        for(TreeNode neighbor: graph.get(curr)) {
+            if(!visited.contains(neighbor)) {
+                visited.add(neighbor);
+                dfs(neighbor, distance + 1, k, result, visited, graph);
+            }
+        }
     }
 }
