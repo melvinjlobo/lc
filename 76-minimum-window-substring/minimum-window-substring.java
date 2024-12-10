@@ -1,3 +1,14 @@
+/**
+    The algorithm works as follows:
+    1. Put all characters in pattern `t`, in a frequency Map. This helps to keep the count
+    2. For each character found in `s` which is a part of pattern `t`, reduce the frequency in the freqMap
+    3. IMP Note as below: Keep reducing the frequency in the freqMap and DO NOT stop at zero. This helps remove redundant characters that are a part of the pattern, but are not actually useful. This is useful later in the code when we shrink windowStart from the left to get rid of redundant letters. This is the only catch in this problem, which otherwise is more of manual bookkeeping
+    4. Also note that we increment matched, only when the frequency we reduce for a character in the freqMap drops to zero. We do not decrement `matched` when we get a frequency reducded to negative. This ensures we keep matched with the pattern `t`
+    5. Now when we find that `matched == t.length()`, i.e all characters are matched, we run a while loop when the aforementioend statement is still true. In this loop, we will try and decrement the window from the left by incrementing windowStart
+        5.a. With each increment, we check if the windowstart has removed a character that is a part of the pattern. if it is , we increment the value in the freqMap (thus reversing the reduction of freq during the match process).
+        5.b Inline with point 3., we don't really reduce match unless the frequency in the map is >=0. This is explained below and is required to ignore the redundnat characters that are a part of the pattern, but not useful for our problem.       
+ */
+
 class Solution {
     public String minWindow(String s, String t) {
         Map<Character, Integer> freqMap = new HashMap<>();
@@ -10,12 +21,8 @@ class Solution {
             freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
         }
 
-        //System.out.println("Map - " + freqMap.toString());
-
-
         int windowStart = 0;
         for(int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
-           // System.out.println("windowEnd - " + windowEnd);
 
             Character c = s.charAt(windowEnd);
 
@@ -35,11 +42,9 @@ class Solution {
                 // Match iff the freq >= 0 since we don't want to match redundant ones
                 if(updatedFreq >= 0) {
                     matched++;
-                   // System.out.println("matched - " + matched);
                 }
             }
-
-            
+        
             // If all the characters matched, we need to start shrinking the window
             while(matched == t.length()) {
                 
@@ -52,14 +57,14 @@ class Solution {
 
                 Character ws = s.charAt(windowStart);
                 windowStart++;
-               // System.out.println("Window Start is - " + windowStart);
 
                 if(freqMap.containsKey(ws)) {
+                     //Reduce the frequency if the char matches the pattern and iff the freq is >= zero
                     if (freqMap.get(ws) >= 0) {
                         matched--;
-                        //System.out.println("matched reduced - " + matched);
                     }
                     
+                    //Just increase the freq overall
                     freqMap.put(ws, freqMap.get(ws) + 1);
                 }
                 
