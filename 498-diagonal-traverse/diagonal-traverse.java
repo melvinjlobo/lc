@@ -46,25 +46,20 @@ class Solution {
         int r = 0, c = 0, idx = 0;
 
         while(idx < (rows * cols)) {
-            System.out.println("idx = " + idx);
-            System.out.println("r = " + r + ", c = " + c);
             result[idx] = mat[r][c];
 
             if((r + c) % 2 == 0) { // Moving upwards
                 // We are on the rightmost boundary. Move One row down in the same col to switch to the downwards journey.
                 //This condition needs to be checked first as explained above since the natural order when moving up is to hit top boundary first and then we move right. If we keep doing this, there is a chance that we will go over bounds when moving right, so we check right first.
                 if(c == cols - 1) {
-                    System.out.println("Up Case 1");
                     r++;
                 }
                 // We are in top row and moving upwards, so we hit the top boundary. Move one col to the right to switch to the downwards journey
                 else if( r == 0) {
-                    System.out.println("Up Case 2");
                     c++;
                 }
                 // We are in the middle of the matrix, continue upwards
                 else {
-                    System.out.println("Up Case 3");
                     r--;
                     c++;
                 }
@@ -74,17 +69,14 @@ class Solution {
                 // We have hit the bottom boundary and moving downwards. Move one col to the right to  switch to the upwards journey
                 //This condition needs to be checked first as explained above since the natural order when moving down is to hit left boundary first and then we move down. If we keep doing this, there is a chance that we will go over bounds when moving down, so we check down first.
                 if(r == rows - 1) {
-                    System.out.println("Down Case 2");
                     c++;
                 }
                 // We have hit the leftmost boundary and moving downwards. Move one row down to switch to the upwards journey
                 else if(c == 0) {
-                    System.out.println("Down Case 1");
                     r++;
                 }
                 // Else we just continue downwards
                 else {
-                    System.out.println("Down Case 3");
                     c--;
                     r++;
                 }
