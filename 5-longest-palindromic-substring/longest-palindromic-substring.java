@@ -7,7 +7,10 @@
         2.	Even length (centered around a pair of characters).
         •	For each character or pair of characters as the center, expand outward while the characters match. Track the longest palindrome found.
 
-    
+    •	Time Complexity: O(n^2)
+	    •	For each of the n centers, expanding outward takes O(n) in the worst case.
+	•	Space Complexity: O(1)
+	    •	No extra space is used beyond variables.
 
     Solution 2: DP (TBD when I get to DP)
 
@@ -22,6 +25,7 @@ class Solution {
             int oddLength = expandAroundCenter(s, i, i);       // Start at the same point for odd
             int evenLength = expandAroundCenter(s, i, i+1);      // Two consecutive characters for even since the start point is between them
             int maxPalindromeLength = Math.max(oddLength, evenLength);      // Get the max of the two
+            
 
             // Now calculate how far we need to move the start and end pointers to capture the boundaries of the max palindrome. 
             if(maxPalindromeLength > end - start) { // length found > previous max length (start - end)
