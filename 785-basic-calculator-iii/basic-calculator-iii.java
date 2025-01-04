@@ -84,59 +84,45 @@ class Solution {
         int currentNumber = 0; // Current number being processed
 
         while (index < s.length()) {
-            System.out.println("------------------------------------------\n");
             char c = s.charAt(index);
-            System.out.println("Current char c = " + c);
 
             if (Character.isDigit(c)) {
                 currentNumber = currentNumber * 10 + (c - '0');
-                System.out.println("Got number. currentNumber = " + currentNumber);
             }
 
             if (c == '(') {
                 index++; // Move past the '('
                 currentNumber = calculateHelper(s); // Recursively calculate inner expression
-                System.out.println("OUT OF RECURSION. currentNumber = " + currentNumber + ", lastnumber = " + lastNumber + ", operation = " + operation + " and result = " + currentResult);
             }
 
             if ((!Character.isDigit(c) && c != ' ') || index == s.length() - 1) {
-                System.out.println("In the non digit section. Current operation is =  " + operation);
                 // Apply the previous operation
                 if (operation == '+') {
                     currentResult += lastNumber;
                     lastNumber = currentNumber;
-                    System.out.println("On + -> currentResult = " + currentResult + ", lastNumber = " + lastNumber);
                 } else if (operation == '-') {
                     currentResult += lastNumber;
                     lastNumber = -currentNumber;
-                    System.out.println("On - -> currentResult = " + currentResult + ", lastNumber = " + lastNumber);
                 } else if (operation == '*') {
                     lastNumber *= currentNumber;
-                    System.out.println("On * -> currentResult = " + currentResult + ", lastNumber = " + lastNumber);
                 } else if (operation == '/') {
                     lastNumber /= currentNumber;
-                    System.out.println("On / -> currentResult = " + currentResult + ", lastNumber = " + lastNumber);
                 }
 
                 // Update the operation
                 operation = c;
                 currentNumber = 0;
-                System.out.println("End Operation IF -> operation = " + operation + ", currentNumber = " + currentNumber);
             }
 
             if (c == ')') {
-                //index++; // Move past the ')'
+                //index++; // NOTE: WE don't need to increase the index as we will run the operator if code above
                 break;   // End recursion for parentheses
             }
 
             index++;
-            System.out.println("Index = " + index);
-            System.out.println("------------------------------------------\n");
         }
 
         currentResult += lastNumber;
-         System.out.println("Final ->  currentResult = " + currentResult + ", LastNumber = " + lastNumber);
-         System.out.println("------------------------------------------\n");
         return currentResult;
 
     }
