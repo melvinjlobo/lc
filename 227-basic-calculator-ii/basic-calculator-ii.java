@@ -49,7 +49,7 @@ class Solution {
             }
 
             if (c == ')') {
-                //index++; // Move past the ')'
+                //index++; // NOTE: WE don't need to increase the index as we will run the operator if code above
                 break;   // End recursion for parentheses
             }
 
