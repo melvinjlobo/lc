@@ -1,3 +1,12 @@
+/**
+Approach :
+Define a mapping of Roman numerals to their integer values.
+Traverse each character in the string:
+If the current numeral is less than the next one, subtract its value from the total.
+Otherwise, add its value to the total.
+Return the accumulated total at the end.
+ */
+
 class Solution {
     Map<Character, Integer> symbols = Map.of(
             'I', 1, 
@@ -14,20 +23,11 @@ class Solution {
         for(int itr = 0; itr < s.length(); itr++) {
             char curr= ' ', next= ' ';
             curr = s.charAt(itr);
-            System.out.println("Curr symbol - " + curr);
-            if(itr + 1 < s.length()) {
-                next = s.charAt(itr + 1);
-                System.out.println("Next symbol - " + next);
-            }
-            if((next != ' ') && (symbols.get(curr) < symbols.get(next))) {
-                System.out.println("Next symbol is greater than curr. Subtract...");
+            if((itr + 1 < s.length()) && (symbols.get(curr) < symbols.get(s.charAt(itr + 1)))) {
                 total -= symbols.get(curr);
             } else {
-                System.out.println("Next symbol is lesser than curr. Add...");
                 total += symbols.get(curr);
             }
-
-            System.out.println("Total in this round - " + total);
         }
 
         return total;
