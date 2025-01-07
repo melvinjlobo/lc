@@ -11,7 +11,7 @@ class Solution {
 
     // Recursive call helper
     private void helper(int[] candidates, int target, int index, List<Integer> currCombo, List<List<Integer>> result) {
-        // Base case
+        // Base case(s)
         if(target == 0) {
             result.add(new ArrayList<>(currCombo));
             return;
