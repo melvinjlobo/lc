@@ -57,6 +57,9 @@ class Solution {
             result.add(new ArrayList(partialList));
         }
 
+
+        // The statement: Each number in candidates may only be used once in the combination.
+        // means we need to use a for loop here..
         for(int i = index; i < candidates.length; i++) {
             if(i > index && candidates[i] == candidates[i-1])
                 continue;
