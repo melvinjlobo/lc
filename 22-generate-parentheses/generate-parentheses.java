@@ -42,12 +42,16 @@ class Solution {
 
         // Add '(' if open count is less than max
         if(open < n) {
-            helper(n, partial + "(" , open + 1, close, result);
+            partial = partial + "(";
+            helper(n, partial , open + 1, close, result);
+            partial = partial.substring(0, partial.length() - 1);
         }
 
         // Add ')' if close count is less than open count
         if(close < open) {
-            helper(n, partial + ")", open, close + 1, result);
+            partial = partial + ")";
+            helper(n, partial, open, close + 1, result);
+            partial = partial.substring(0, partial.length() - 1);
         }
     }
 }
