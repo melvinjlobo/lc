@@ -49,6 +49,7 @@ class Solution {
     private void helper(int[] candidates, int target, int index, List<List<Integer>> result, List<Integer> partialList) {
 
         // Base case
+        // NOTE: We don't do this since we traverse the index in a for loop which terminates. We have to do this only if we are picking the same index repeatedly as if we don't meet the target, this goes on forever....
         // if(index == candidates.length)
         //     return;
         
