@@ -42,16 +42,19 @@ class Solution {
 
         // Add '(' if open count is less than max
         if(open < n) {
-            partial = partial + "(";
+            partial = partial + "(";    //Pick
             helper(n, partial , open + 1, close, result);
-            partial = partial.substring(0, partial.length() - 1);
+            partial = partial.substring(0, partial.length() - 1);   //Not pick
+
+            //Alternative below so that you don't have to append character to the string and remove it again: 
+            //helper(n, partial + "(" , open + 1, close, result);
         }
 
         // Add ')' if close count is less than open count
         if(close < open) {
-            partial = partial + ")";
+            partial = partial + ")";        // Pick
             helper(n, partial, open, close + 1, result);
-            partial = partial.substring(0, partial.length() - 1);
+            partial = partial.substring(0, partial.length() - 1);   //Not pick
         }
     }
 }
