@@ -22,7 +22,8 @@ class Solution {
         }
 
         // Here we don't need to run the whole loop. We run two recursions one with and one without.
-        // The below is for with (interested in index)
+        // The below is for with (interested in index). The reason for this is the below statement:
+        // The same number may be chosen from candidates an unlimited number of times. 
         if(candidates[index] <= target) {
             currCombo.add(candidates[index]);
             helper(candidates, target - candidates[index], index, currCombo, result);
