@@ -23,7 +23,7 @@
 "((()))" "(()()" "(())()" "()(())"
                      ...
 
-    TC: The time complexity is O(4^n / √n) because:
+    TC: The time complexity is O(4^n / √n) because of Catalan number
  */
 
 class Solution {
