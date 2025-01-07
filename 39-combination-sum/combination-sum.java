@@ -16,7 +16,8 @@ class Solution {
             result.add(new ArrayList<>(currCombo));
             return;
         }
-        else if(index == candidates.length) {
+        
+        if(index == candidates.length) {
             return;
         }
 
