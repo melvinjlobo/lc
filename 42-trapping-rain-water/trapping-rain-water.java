@@ -31,20 +31,24 @@ class Solution {
 
         while(left <= right) {
             if(height[left] <= height[right]) { // Pick min of either left wall or right wall
-                if(height[left] >= leftSideMax)
-                    leftSideMax = height[left];
-                else
-                    res += leftSideMax - height[left];
-                // leftSideMax = Math.max(leftSideMax, height[left]);
-                // res += leftSideMax - height[left];
+                /////// OPTIMIZATION - NOT REQUIRED ////////
+                // if(height[left] >= leftSideMax)
+                //     leftSideMax = height[left];
+                // else
+                //     res += leftSideMax - height[left];
+                /////// OPTIMIZATION - NOT REQUIRED ////////
+                leftSideMax = Math.max(leftSideMax, height[left]);
+                res += leftSideMax - height[left];
                 left++;
             } else {
-                if(height[right] >= rightSideMax)
-                    rightSideMax = height[right];
-                else
-                    res += rightSideMax - height[right];
-                // rightSideMax = Math.max(rightSideMax, height[right]);
-                // res += rightSideMax - height[right];
+                /////// OPTIMIZATION - NOT REQUIRED ////////
+                // if(height[right] >= rightSideMax)
+                //     rightSideMax = height[right];
+                // else
+                //     res += rightSideMax - height[right];
+                /////// OPTIMIZATION - NOT REQUIRED ////////
+                rightSideMax = Math.max(rightSideMax, height[right]);
+                res += rightSideMax - height[right];
                 right--;
             }
         }
