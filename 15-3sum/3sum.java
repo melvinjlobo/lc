@@ -25,7 +25,7 @@ class Solution {
         for(int i = 0; i < nums.length - 2; i++) {
                 
             // Skip duplicates
-            if(i > 0&& nums[i] == nums[i - 1]) 
+            if(i > 0 && nums[i] == nums[i - 1]) 
                 continue;
             
             int left = i + 1, right = nums.length - 1;
