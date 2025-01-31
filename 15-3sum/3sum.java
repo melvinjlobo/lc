@@ -22,36 +22,57 @@ class Solution {
         // First sort the array
         Arrays.sort(nums);
 
-        // Next traverse until length - 2 since we want triplets
         for(int i = 0; i < nums.length - 2; i++) {
-            // Skip duplicates (when we are ahead of index 0)
-            if(i > 0 && nums[i] == nums[i-1])
+                
+            // Skip duplicates
+            if(i > 0&& nums[i] == nums[i - 1]) 
                 continue;
-            searchPair(nums, i + 1, -nums[i], result);
-        }
+            
+            int left = i + 1, right = nums.length - 1;
 
+            while(left < right) {
+                long sum = (long) nums[i] + nums[left] + nums[right];
+
+                if(sum == 0) {
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    left++;
+                    right--;
+
+                    //Skip duplicates
+                    while(left < right && nums[left] == nums[left - 1]) 
+                        left++;
+
+                    while(left < right && nums[right] == nums[right + 1])
+                        right--;
+                } else if(sum < 0)
+                    left++;
+                else
+                    right--;
+            }
+              
+        }
         return result;
     }
 
-    private void searchPair(int[] nums, int left, int target, List<List<Integer>> result) {
-        int right = nums.length - 1;
-        while(left < right) {
-            int sum = nums[left] + nums[right];
-            if(sum == target) {
-                result.add(Arrays.asList(nums[left], nums[right], -target));
-                left++;
-                right--;
-                // skip dulicates. The comparisons have to happen after we do one increment and one decrement. This is useful for the `if`
-                while(left < right && nums[left] == nums[left - 1])
-                    left++;
-                while(left < right && nums[right] == nums[right + 1])
-                    right--;
+    // private void searchPair(int[] nums, int left, int target, List<List<Integer>> result) {
+    //     int right = nums.length - 1;
+    //     while(left < right) {
+    //         int sum = nums[left] + nums[right];
+    //         if(sum == target) {
+    //             result.add(Arrays.asList(nums[left], nums[right], -target));
+    //             left++;
+    //             right--;
+    //             // skip dulicates. The comparisons have to happen after we do one increment and one decrement. This is useful for the `if`
+    //             while(left < right && nums[left] == nums[left - 1])
+    //                 left++;
+    //             while(left < right && nums[right] == nums[right + 1])
+    //                 right--;
 
-            } else if(sum > target) {
-                right--;
-            } else {
-                left++;
-            }
-        }
-    }
+    //         } else if(sum > target) {
+    //             right--;
+    //         } else {
+    //             left++;
+    //         }
+    //     }
+   //}
 }
