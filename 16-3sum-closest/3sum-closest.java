@@ -13,19 +13,16 @@ class Solution {
 
             while(left < right) {
                 int sum = nums[i] + nums[left] + nums[right];
-                //System.out.println("Curr Sum is :  " + sum);
                 int diff = target - sum;
-                //System.out.println("Diff  for: " + nums[i] + ", " + nums[left] + ", " + nums[right] + ", is: " + diff);
 
                 if(diff == 0)
                     return sum;
-                
-                //System.out.println("Smallest diff between; " + Math.abs(smallestDiff) + " and " + Math.abs(diff));
+
+                //NOTE: Math.min does not work since the final vlue to be assigned to `smallestDiff` is `diff` and not `Math.abs(diff)`
+                //which the below statement will do....
                 //smallestDiff = Math.min(Math.abs(smallestDiff), Math.abs(diff));
                 if(Math.abs(diff) < Math.abs(smallestDiff))
                     smallestDiff = diff;
-
-                //System.out.println("is " + Math.abs(smallestDiff));
 
                 if(sum < target)
                     left++;
@@ -34,6 +31,6 @@ class Solution {
             }
         }
 
-        return target - smallestDiff;
+        return target - smallestDiff;       // We do this since we already have the target and the difference between the sum and the target. By subtracting, we get the sum. i.e., we have `sum + smallestDiff = target`. Therefore, `sum = target - smallestDiff`
     }
 }
