@@ -11,29 +11,28 @@
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
 
-        if(head == null)
-            return head;
+        ListNode fast = head, slow = head;
 
-        // The reason we use dummy is because of the edge case where the head will be removed
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-
-        ListNode front = dummy;
-        ListNode behind = dummy;
-        
-        
-        for(int i = 0; i <= n; i++)
-            front = front.next;
-
-        while(front != null) {
-            front = front.next;
-            behind = behind.next;
-        }
-        
-        if(behind.next != null) {
-            behind.next = behind.next.next;
+        // Move fast ahead by `n` steps
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
         }
 
-        return dummy.next;
+        // If fast reaches null, that means we need to remove the head node
+        if (fast == null) {
+            return head.next; // Skip the head
+        }
+
+        // Move fast and slow together until fast reaches the last node
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        // Remove the nth node
+        slow.next = slow.next.next;
+
+        return head;
+
     }
 }
