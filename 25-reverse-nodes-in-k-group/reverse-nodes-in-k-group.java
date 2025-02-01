@@ -15,9 +15,11 @@
         2. Set a curr to head. 
         3. Sever the smaller k list from the larger linked list. But before that, make a note of the next node with `nextNode`
         4. Reverse the severed list
-        5. Re-align heads. ONLY for the first group point head to curr. For others:
-            5.a. Keep a listEndNode pointing to curr
-            5.b. This now will point to nextNode, forming the chain between groups
+        5. Re-align heads. 
+            5.a. ONLY for the first group head will be the same as curr. This is because, even though we reverse a list in a function, when we come out of the function, the position of curr itself does not change and it will point to the end of the reversed list. 
+            5. b. For others:
+            If there is a previous `endOfGroup`, point it to `kthNode`, which is now the new head of the reversed group
+        6. Prepare for the next iteration. Update curr to the nextGroup and `endOfGroup` to the end of the current group for step 5.
  
   */
 class Solution {
