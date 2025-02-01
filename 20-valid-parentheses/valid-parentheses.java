@@ -7,10 +7,12 @@ class Solution {
                 stack.push(c);
             else if(c == ')' || c == '}' || c == ']') {
                 if( stack.isEmpty() 
-                    || (c == ')' && stack.pop() != '(')
-                    || (c == '}' && stack.pop() != '{')
-                    || (c == ']' && stack.pop() != '['))
+                    || (c == ')' && stack.peek() != '(')
+                    || (c == '}' && stack.peek() != '{')
+                    || (c == ']' && stack.peek() != '[')) {
                     return false;
+                }
+                stack.pop();
             } 
         }
 
