@@ -24,7 +24,6 @@ class Solution {
             for (int j = 0; j < n; j++) {
                 if(grid[i][j] == 2){
                     queue.offer(new Pair(i, j));
-                    //visited[i][j] = true;
                 }
                 else if (grid[i][j] == 1)
                     freshOranges++;
@@ -36,7 +35,7 @@ class Solution {
             return 0;
 
         // Run BFS
-        while(!queue.isEmpty()) {
+        while(!queue.isEmpty() && freshOranges > 0) {
             int size = queue.size();
             boolean hasRotten = false;
             for(int i = 0 ; i < size ; i++) {
@@ -46,7 +45,6 @@ class Solution {
                     int newCol = cell.col + dir[1];
                     if (canRot(grid, m, n, newRow, newCol)) {
                         grid[newRow][newCol] = 2;
-                        //visited[newRow][newCol] = true;
                         queue.offer(new Pair(newRow, newCol));
                         freshOranges--;
                         hasRotten = true;
