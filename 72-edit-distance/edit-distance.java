@@ -21,7 +21,8 @@ class Solution {
         
         if (dp[i1][i2] != -1)
             return  dp[i1][i2];
-        else if(s1.charAt(i1 - 1) == s2.charAt(i2- 1))
+        
+        if(s1.charAt(i1 - 1) == s2.charAt(i2- 1))
             dp[i1][i2] =  ed(dp, s1, s2, i1-1, i2-1);    // Chars match. move on
         else {
             // Else 3 choices: Insert, Delete, Replace
