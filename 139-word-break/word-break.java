@@ -1,5 +1,5 @@
 class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
+    public boolean wordBreak1(String s, List<String> wordDict) {
         Set<String> wordSet = new HashSet<String>(wordDict);
         Map<Integer, Boolean> dp = new HashMap<>();
         return recurse(s, 0, wordSet, dp);
@@ -23,7 +23,7 @@ class Solution {
         return false;
     }
 
-    public boolean wordBreakTab(String s, List<String> wordDict) {
+    public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> wordSet = new HashSet<String>(wordDict);
         boolean[] dp = new boolean[s.length() + 1];
 
@@ -33,8 +33,8 @@ class Solution {
         for(int end = 1; end <= s.length(); end++) {
             for(int start = 0; start < end; start++) {
                 String currentWord = s.substring(start, end);
-                dp[start] = dp[end] && wordSet.contains(currentWord);
-                if (dp[start]) {
+                dp[end] = dp[start] && wordSet.contains(currentWord);
+                if (dp[end]) {
                     break;
                 }
             }
