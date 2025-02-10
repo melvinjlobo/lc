@@ -22,4 +22,24 @@ class Solution {
         dp.put(start, false);
         return false;
     }
+
+    public boolean wordBreakTab(String s, List<String> wordDict) {
+        Set<String> wordSet = new HashSet<String>(wordDict);
+        boolean[] dp = new boolean[s.length() + 1];
+
+        //Init
+        dp[0] = true;
+
+        for(int end = 1; end <= s.length(); end++) {
+            for(int start = 0; start < end; start++) {
+                String currentWord = s.substring(start, end);
+                dp[start] = dp[end] && wordSet.contains(currentWord);
+                if (dp[start]) {
+                    break;
+                }
+            }
+        }
+
+        return dp[s.length()];
+    }
 }
