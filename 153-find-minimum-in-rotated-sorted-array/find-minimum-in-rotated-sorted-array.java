@@ -4,7 +4,7 @@
         Example: [4, 5, 6, 7, 0, 1, 2] -> l = 4, m = 7, h = 2 -> m to h is not sorted, but has minimum
         Example: [7., 8, 1, 2, 3, 4, 5, 6] -> l = 7, m = 2, h = 6 -> m to h IS sorted and has minimum
 
-So, the logic is that whenever we find a sroted half, we make a note of the min of that half (low or mid) until low > high
+So, the logic is that whenever we find a sorted half, we make a note of the min of that half (low or mid) until low > high
 
  */
 
@@ -17,13 +17,13 @@ class Solution {
             int mid = low + (high - low) / 2;
 
             /**
-                This is an optimization step. May or may not be required to do this. When we eliminate the sorted half, if the second half is also sorted, then we have a complete sorted array. This means that we have just about moved out of the rotation space and entered the part of the array that is completely sorted. In this case, the low is the minimum
-                Example: [4, 5, 6, 0, 1, 2] -> l = 4, m = 0, h = 2
+                This is an optimization step. May or may not be required to do this. If both the halves are sorted, then we have a complete sorted array. This means that we have just about moved out of the rotation space and entered the part of the array that is completely sorted. In this case, the low is the minimum
+                Example: [0, 1, 2, 3, 4, 5] -> l = 0, m = 3, h = 5
                 Here, l to m is sorted and m to h is also sorted. This is the case where l < h
              */
              if(nums[low] <= nums[high]) {
                 min = Math.min(min, nums[low]);
-                break;  // We are done. No further BS required
+                break;  // We are done. No further search is required
              }
 
 
