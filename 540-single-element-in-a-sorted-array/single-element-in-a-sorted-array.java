@@ -29,20 +29,21 @@ class Solution {
         if(nums[0] != nums[1]) return nums[0];
         if(nums[n-1] != nums[n-2]) return nums[n-1];
 
-        int low = 1, high = n-2;
+        int low = 1, high = n-2;        // Smaller size for the loop since we have already handled edge cases for either ends above
 
         while(low <= high) {
             int mid = low + (high - low) / 2;
 
+            // If it is a single element, then both numbers on either side of this element will be different
             if(nums[mid] != nums[mid - 1] && nums[mid] != nums[mid + 1])
                 return nums[mid];
             
-            //Are we on the left of the single element?
-            if((mid % 2 == 0 && nums[mid] == nums[mid + 1]) ||
-               (mid % 2 == 1 && nums[mid] == nums[mid - 1]))
+            //Are we on the left of the single element?.. Check if the  order Even,Odd holds
+            if((mid % 2 == 0 && nums[mid] == nums[mid + 1]) ||  // We are at an even position, check the odd position on the right for a match
+               (mid % 2 == 1 && nums[mid] == nums[mid - 1]))    // We are at an odd potision, check the even position on the left for a match
                low = mid + 1;       // discard the left
             else
-                high = mid - 1;
+                high = mid - 1;     // else we are on the right side, discard the right
         }
 
         return -1;
