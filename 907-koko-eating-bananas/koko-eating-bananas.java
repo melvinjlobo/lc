@@ -22,7 +22,10 @@ So, the general logic will be:
 class Solution {
 
     // Go through all the piles and try eating them in the rate per hour provided in this function.
-    // Note: We have to take the ceiling in case the ans for a pile is in decimals as we cannot start eating the next pile until the end of that hour
+    // Note: We have to take the ceiling in case the ans for a pile is in decimals as we cannot start eating the next pile until the end of that hour. 
+    // NOTE: we need housRequired to be of type `long`, else it fails for a use case where the piles are almost the MAX_INT. The use case is:
+    // piles = [805306368,805306368,805306368], h = 000000000
+    // Given pile = 805306368 and a very small rate (ratePerHour = 1 early in binary search), each pile takes 805,306,368 hours, and summing three of them overflows int (which maxes at 2,147,483,647).
     public long calculateRate(int piles[], int ratePerHour) {
         long hoursRequired = 0;
         for(int pile : piles) {
