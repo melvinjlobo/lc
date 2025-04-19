@@ -32,7 +32,6 @@ class Solution {
             int timeToEatThisPile = (int) Math.ceil((double) pile / ratePerHour);
             hoursRequired += timeToEatThisPile;
         }
-        System.out.println("Time to eat bananas at rate - " + ratePerHour + " is - " + hoursRequired);
         return hoursRequired;
     }
 
@@ -48,7 +47,6 @@ class Solution {
         int low = 1, high = maxRange;
         while(low <= high) {
             int mid = low + (high - low) / 2;
-            System.out.println(String.format("mid - %s", mid));
             //Get the number of hours to eat all piles
             long hours = calculateRate(piles, mid);
 
