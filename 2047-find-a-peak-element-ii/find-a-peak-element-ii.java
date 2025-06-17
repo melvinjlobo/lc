@@ -20,8 +20,22 @@ Here, `mid` will be Col no - 0 + 2 / 2 = 1. Now in Col 1, 30 is the highest.
 
 Since this is a 2D matrix, once we pick the largest element in the column, then we only have to look for the peak values in the other dimension (row), so we actually halve our problem by picking the max in the column (as it is the peak in that col).
 
+Intuition analogy:
 
+Think of a column as a vertical ridge in the mountains.
+	•	You’re trying to climb to the highest point on the ridge before looking around to see if it’s the highest peak in the area.
+	•	That gives you the best chance to either find the peak or decide which direction to go.
 
+Guarantee of progress:
+If mat[i][j] (the column max) is not a peak, then:
+	•	One of its left or right neighbors is greater.
+	•	So, a peak must exist in that direction.
+	•	That gives us a valid direction to move in binary search.
+    
+We find the global max in a column because:
+	•	It gives us the most promising candidate in that column.
+	•	If it’s not a peak, it guarantees a better neighbor exists in adjacent columns.
+	•	This helps our binary search converge faster.
  */
 
 
